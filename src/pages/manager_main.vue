@@ -155,14 +155,15 @@ export default {
         (response) => {
           let data = response.data;
           this.round = data.data.time.NowRound;
+          console.log(this.round)
           if (data.data.time.RemainTime <= 0) {
             this.leftTime = "比赛未进行"
           } else {
-            RemainTime = data.data.time.RemainTime;
-            hour = RemainTime % 3600
-            min = RoundRemainTime % 60;
-            sec = RoundRemainTime / 60;
-            this.leftTime = hour + "小时" + min + "分" + sec + "秒"
+            // RemainTime = data.data.time.RemainTime;
+            // hour = RemainTime % 3600
+            // min = RoundRemainTime % 60;
+            // sec = RoundRemainTime / 60;
+            // this.leftTime = hour + "小时" + min + "分" + sec + "秒"
           }
         },
         (error) => {
@@ -272,7 +273,7 @@ export default {
   margin: 0 130px;
 }
 #forManagerMain {
-   这里会影响组件的rankItem!!!!!!!!! 
-  width: 635px; 
+   这里会影响组件的rankItem!!!!!!!!!
+  width: 635px;
 } */
 </style>

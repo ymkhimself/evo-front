@@ -130,7 +130,7 @@ export default {
         this.quizMap.clear()
         this.quizData.forEach((item)=>{
            this.quizMap.set(item.ID, item.Title)
-        })  
+        })
       },
       (error) => {
         console.log(error);
@@ -240,6 +240,7 @@ const form = reactive({
   height: 70%;
   display: flex;
   flex-direction: column;
+  width: 100%;
   justify-content: space-between;
 }
 .container {

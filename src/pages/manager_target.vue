@@ -17,23 +17,23 @@
       >重置所有靶机分数</el-button
     >
 
-    <el-form-item
-      label="所属题目"
-      id="challengeSelectLabel"
-      class="selectLabel"
-    >
-      <el-select v-model="form.region3" placeholder="请选择题目">
-        <el-option label="题目1" value="第1题" />
-        <el-option label="题目2" value="第2题" />
-      </el-select>
-    </el-form-item>
+<!--    <el-form-item-->
+<!--      label="所属题目"-->
+<!--      id="challengeSelectLabel"-->
+<!--      class="selectLabel"-->
+<!--    >-->
+<!--      <el-select v-model="form.region3" placeholder="请选择题目">-->
+<!--        <el-option label="题目1" value="第1题" />-->
+<!--        <el-option label="题目2" value="第2题" />-->
+<!--      </el-select>-->
+<!--    </el-form-item>-->
 
-    <el-form-item label="所属队伍" id="teamSelectLabel" class="selectLabel">
-      <el-select v-model="form.region2" placeholder="请选择队伍">
-        <el-option label="Oops队" value="Oops队" />
-        <el-option label="haha队" value="haha队" />
-      </el-select>
-    </el-form-item>
+<!--    <el-form-item label="所属队伍" id="teamSelectLabel" class="selectLabel">-->
+<!--      <el-select v-model="form.region2" placeholder="请选择队伍">-->
+<!--        <el-option label="Oops队" value="Oops队" />-->
+<!--        <el-option label="haha队" value="haha队" />-->
+<!--      </el-select>-->
+<!--    </el-form-item>-->
   </div>
   <!-- 第一行结束 -->
 

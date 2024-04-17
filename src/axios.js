@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const instance = axios.create({
   // 设置baseURL，可以将所有请求的URL设置为相对路径，方便统一管理
-  baseURL: "http://172.17.0.1:8080",
+  baseURL: "http://localhost:8082",
   // 设置请求头，例如Authorization、Content-Type等等
   headers: {
     'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("Token")),

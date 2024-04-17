@@ -9,7 +9,7 @@
         <router-link to="/manager_flag" @click="changeText1" active-class="active">flag管理</router-link>
         <router-link to="/manager_target" @click="changeText1" active-class="active">靶机管理</router-link>
         <router-link to="/manager_team" @click="changeText1" active-class="active">队伍管理</router-link>
-        <router-link to="/manager_screen" @click="changeText1" active-class="active">3D大屏管理</router-link>
+<!--        <router-link to="/manager_screen" @click="changeText1" active-class="active">3D大屏管理</router-link>-->
         <!-- <router-link to="/manager_webhook" @click="changeText1" active-class="active">WebHook管理</router-link> -->
         <router-link to="/manager_config" @click="changeText1" active-class="active">配置管理</router-link>
         <router-link to="/manager_account" @click="changeText1" active-class="active">账号管理</router-link>
