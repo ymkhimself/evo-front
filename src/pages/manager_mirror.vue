@@ -2,29 +2,30 @@
   <div class="mirrorContainer">
     <!-- 添加镜像按钮 -->
     <el-button
-      color="#5B7290"
-      :dark="isDark"
-      class="btn01"
-      @click="dialogFormVisible = true"
-      >添加镜像</el-button
+        color="#5B7290"
+        :dark="isDark"
+        class="btn01"
+        @click="dialogFormVisible = true"
+    >添加镜像
+    </el-button
     >
 
     <!-- 列表 -->
     <el-table
-      style="width: 90%"
-      height="600"
-      :data="tableData"
-      class="mirrorTable"
+        style="width: 90%"
+        height="600"
+        :data="tableData"
+        class="mirrorTable"
     >
-      <el-table-column width="550" label="ID" prop="Id" />
-      <el-table-column width="450" label="镜像名" prop="Tags" />
-      <el-table-column label="操作"  width="350">
+      <el-table-column width="550" label="ID" prop="Id"/>
+      <el-table-column width="450" label="镜像名" prop="Tags"/>
+      <el-table-column label="操作" width="350">
         <template #default="scope">
           <el-popconfirm
-            title="请确认是否删除该镜像？"
-            confirm-button-type="danger"
-            cancel-button-type="primary"
-            @confirm="Delete(scope.row.Tags)"
+              title="请确认是否删除该镜像？"
+              confirm-button-type="danger"
+              cancel-button-type="primary"
+              @confirm="Delete(scope.row.Id)"
           >
             <template #reference>
               <el-button type="danger" round>删除</el-button>
@@ -35,16 +36,16 @@
     </el-table>
     <!-- 添加镜像触发的弹窗 -->
     <el-dialog
-      v-model="dialogFormVisible"
-      title="添加镜像"
-      :close-on-click-modal="false"
+        v-model="dialogFormVisible"
+        title="添加镜像"
+        :close-on-click-modal="false"
     >
       <el-form :model="newMirror">
         <el-form-item label="镜像名" :label-width="100">
-          <el-input v-model="newMirror.name" />
+          <el-input v-model="newMirror.name"/>
         </el-form-item>
         <el-form-item label="附件" :label-width="100">
-          <input type="file" ref="input" accept=".tar" @change="handleChange" />
+          <input type="file" ref="input" accept=".tar" @change="handleChange"/>
         </el-form-item>
         <el-form-item :label-width="550">
           <el-button color="#5B7290" @click="upload">上传</el-button>
@@ -57,82 +58,83 @@
 
 <script>
 // import axios from "axios";
-import axios from "@/axios";
+import axios from '@/axios'
+
 export default {
-  name: "managerMirror",
-  data() {
+  name: 'managerMirror',
+  data () {
     return {
       file: null,
       tableData: [],
       dialogFormVisible: false,
       newMirror: {
         image: null,
-        name: "",
+        name: '',
       },
-    };
+    }
   },
 
-  mounted() {
-   this.getMirrors()
+  mounted () {
+    this.getMirrors()
   },
   methods: {
     //获取镜像
-    getMirrors() {
-      axios.get("/manager/image").then(
-        (response) => {
-          let data = response.data;
-          this.tableData = data.data.images;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    },
-    handleChange(e) {
-      this.file = e.target.files[0];
-    },
-    //上传image文件
-    upload() {
-      const formData = new FormData();
-      formData.append("image", this.file);
-      formData.append("name", this.newMirror.name);
-      axios
-        .post("manager/image", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then(
-          //处理响应后返回的数据
+    getMirrors () {
+      axios.get('/manager/image').then(
           (response) => {
-            let data = response.data;
-            if(data.code == 200){
-              alert("上传成功")
-            }
+            let data = response.data
+            this.tableData = data.data.images
           },
           (error) => {
-            console.log(error);
+            console.log(error)
           }
-        );
+      )
     },
-     //删除镜像
-      Delete(Tags) {
-        console.log("mirrorName:",Tags)
-        axios
+    handleChange (e) {
+      this.file = e.target.files[0]
+    },
+    //上传image文件
+    upload () {
+      const formData = new FormData()
+      formData.append('image', this.file)
+      formData.append('name', this.newMirror.name)
+      axios
+          .post('manager/image', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          })
+          .then(
+              //处理响应后返回的数据
+              (response) => {
+                let data = response.data
+                if (data.code == 200) {
+                  alert('上传成功')
+                }
+              },
+              (error) => {
+                console.log(error)
+              }
+          )
+    },
+    //删除镜像
+    Delete (Tags) {
+      console.log('mirrorName:', Tags)
+      axios
           .delete(
-            "/manager/image",{},
-            { params: { image: Tags } }
+              '/manager/image',
+              { params: { image: Tags } }
           )
           .then(
-            (response) => {
-              let data = response.data;
-              alert(data.msg);
-            },
-            (error) => {
-              console.log(error);
-            }
-          );
-      },
+              (response) => {
+                let data = response.data
+                alert(data.msg)
+              },
+              (error) => {
+                console.log(error)
+              }
+          )
+    },
     //   //上传文件
     //   upload(){
     //     let image = this.$refs.input.files[0]
@@ -169,7 +171,7 @@ export default {
     //       }
     //     );
   },
-};
+}
 </script>
 
 <style scoped>

@@ -1,6 +1,7 @@
 <template>
   <div>
-      <iframe src="http://172.17.0.1:3000/d/BeCL9Q-4k/docker-monitoring?orgId=1&refresh=10s&kiosk" frameborder="0" class="monitor"></iframe>
+      <iframe src="http://192.168.56.103:3000/d/BYN6sX-Sz/docker-and-system-monitoring?orgId=1&refresh=5m&from=now-3h&to=now&kiosk" frameborder="0" class="monitor"></iframe>
+<!--  http://192.168.56.103:3000/d/BYN6sX-Sz/docker-and-system-monitoring?orgId=1&refresh=5m&kiosk-->
   </div>
 </template>
 
@@ -16,6 +17,6 @@ div{
 }
 .monitor{
     height: 100%;
-    width: 95%;
+    width: 100%;
 }
 </style>

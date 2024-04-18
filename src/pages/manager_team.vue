@@ -10,7 +10,6 @@
     <el-table-column label="logo" width="180">
       <template #default="scope">
         <el-avatar shape="square" :size="50" :src="scope.row.Logo"/>
-        <!-- <span style="margin-left: 10px">{{ scope }}</span> -->
       </template>
     </el-table-column>
     <el-table-column prop="Name" label="队伍名" width="180"/>
@@ -236,7 +235,7 @@ export default {
             let data = res.data
             for (let i = 0; i < data.data.teams.length; i++) {
               data.data.teams[i].Logo =
-                  'http://172.17.0.1:8082' + data.data.teams[i].Logo
+                  'http://localhost:8082'+ data.data.teams[i].Logo
             }
             this.tableData = data.data.teams
             // alert(data.msg);

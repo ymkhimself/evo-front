@@ -142,7 +142,6 @@ export default {
       axios
         .delete("/manager/account", {
           params: {
-            // URL query string parameters
             adminId: ID,
           },
         })
@@ -162,7 +161,7 @@ export default {
       this.dialogVisible = false;
       axios
         .post(
-          "http://172.17.0.1:8080/manager/account",
+          "/manager/account",
           {
             name: this.newAccount.newAccountName,
             pwd: this.newAccount.newPassword,

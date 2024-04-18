@@ -24,7 +24,7 @@
           </el-descriptions-item>
           <el-descriptions-item label="总分数" :span="2">
             <p>
-              
+
               {{ teamInfo.score }}
             </p>
           </el-descriptions-item>
@@ -158,14 +158,12 @@
               placeholder="Please input your flag"
               maxlength="100"
             />
-            <!-- 不知道为什么el-input输入不了，换成普通的 input 就可以 -->
-            <!-- <input v-model="submitFlag" placeholder="Please input your flag" maxlength="100"/> -->
           </div>
           <div style="margin-top: 12px"></div>
           <el-button
             id="submitBtn"
             type="primary"
-            @click="subFlag"
+            @click=submitFlagFnc
             style="width: 100%"
             >提交</el-button
           >
@@ -241,7 +239,7 @@
           </p>
         </div>
       </div>
-    </div> 
+    </div>
   </div>-->
 </template>
 
@@ -304,7 +302,7 @@ export default {
       );
     },
     // 提交flag
-    submitFlag() {
+    submitFlagFnc() {
       axios
         .post("/team/flag", {
           flag: this.submitFlag,
@@ -312,7 +310,7 @@ export default {
         .then(
           (response) => {
             console.log(response);
-            alert("提交成功");
+            alert(response.data.msg);
           },
           (error) => {
             console.log(error);
@@ -438,7 +436,7 @@ div::-webkit-scrollbar {
 }
 </style>
 
-<!-- 
+<!--
 #leftBar {
   width: 20%;
   height: 600px;

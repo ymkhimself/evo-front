@@ -151,12 +151,12 @@
           />
         </el-select>
       </el-form-item>
-      <el-form-item label="SSH账号" :label-width="100">
-        <el-input v-model="newTarget.SSHAccount" />
-      </el-form-item>
-      <el-form-item label="SSH密码" :label-width="100">
-        <el-input v-model="newTarget.SSHPwd" />
-      </el-form-item>
+<!--      <el-form-item label="SSH账号" :label-width="100">-->
+<!--        <el-input v-model="newTarget.SSHAccount" />-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="SSH密码" :label-width="100">-->
+<!--        <el-input v-model="newTarget.SSHPwd" />-->
+<!--      </el-form-item>-->
       <el-form-item label="SSH端口" :label-width="100">
         <el-input v-model="newTarget.SSHPort" />
       </el-form-item>
@@ -183,7 +183,7 @@ export default {
         teamBelongID: "",
         // 靶机基于的镜像
         image: "",
-        SSHAccount: "",
+        SSHAccount: "root",
         SSHPwd: "",
         SSHPort: "",
         //存储题目信息的map

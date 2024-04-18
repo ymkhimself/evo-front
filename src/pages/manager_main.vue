@@ -32,10 +32,10 @@
       <el-collapse v-model="activeName" accordion>
         <!-- accordion是否折叠 -->
         <el-collapse-item
-          v-for="(item, index) in notifications"
-          :key="index"
-          :title="item.Title"
-          name="1"
+            v-for="(item, index) in notifications"
+            :key="index"
+            :title="item.Title"
+            name="1"
         >
           {{ item.Content }}
         </el-collapse-item>
@@ -48,32 +48,32 @@
             <div>通知内容1112</div>
           </el-collapse-item>
         </div> -->
-        <!-- accordion是否折叠
-        <el-collapse-item title="通知标题1" name="1">
-          <div>通知内容1111</div>
-          <div>通知内容111(2</div>
-        </el-collapse-item>
-        <el-collapse-item title="通知标题2" name="2">
-          <div>通知内容2222</div>
-          <div>通知内容222(2</div>
-        </el-collapse-item>
-        <el-collapse-item title="通知标题3" name="3">
-          <div>通知内容3333</div>
-          <div>通知内容333(2</div>
-          <div>
-            Easy to identify: the interface should be straightforward, which
-            helps the users to identify and frees them from memorizing and
-            recalling.
-          </div>
-        </el-collapse-item>
-        <el-collapse-item title="通知标题4" name="4">
-          <div>通知内容444</div>
-          <div>
-            Controlled consequences: users should be granted the freedom to
-            operate, including canceling, aborting or terminating current
-            operation.
-          </div>
-        </el-collapse-item> -->
+      <!-- accordion是否折叠
+      <el-collapse-item title="通知标题1" name="1">
+        <div>通知内容1111</div>
+        <div>通知内容111(2</div>
+      </el-collapse-item>
+      <el-collapse-item title="通知标题2" name="2">
+        <div>通知内容2222</div>
+        <div>通知内容222(2</div>
+      </el-collapse-item>
+      <el-collapse-item title="通知标题3" name="3">
+        <div>通知内容3333</div>
+        <div>通知内容333(2</div>
+        <div>
+          Easy to identify: the interface should be straightforward, which
+          helps the users to identify and frees them from memorizing and
+          recalling.
+        </div>
+      </el-collapse-item>
+      <el-collapse-item title="通知标题4" name="4">
+        <div>通知内容444</div>
+        <div>
+          Controlled consequences: users should be granted the freedom to
+          operate, including canceling, aborting or terminating current
+          operation.
+        </div>
+      </el-collapse-item> -->
       <!-- </el-collapse> -->
     </div>
 
@@ -93,8 +93,8 @@
         ></rankItem>
       </ul> -->
       <el-table :data="rankTableData" stripe style="width: 100%">
-        <el-table-column prop="Rank" label="排名" width="80"> </el-table-column>
-        <el-table-column prop="Name" label="队伍名"> </el-table-column>
+        <el-table-column prop="Rank" label="排名" width="80"></el-table-column>
+        <el-table-column prop="Name" label="队伍名"></el-table-column>
         <el-table-column prop="Score" label="得分" width="100">
         </el-table-column>
       </el-table>
@@ -103,15 +103,16 @@
 </template>
 
 <script>
-import axios from "@/axios";
-import rankItem from "../components/RankItem.vue";
+import axios from '@/axios'
+import rankItem from '../components/RankItem.vue'
+
 export default {
-  name: "managerMain",
+  name: 'managerMain',
   components: { rankItem },
-  data() {
+  data () {
     return {
       round: 5,
-      leftTime: "4h50min",
+      leftTime: '4h50min',
       rankTableData: [],
       notifications: [],
       // rankList: [
@@ -120,60 +121,75 @@ export default {
       //   { rank: 3, name: "007", score: 6666 },
       // ],
       // show: true, //为了transition组件
-    };
+    }
   },
-  mounted() {
-    this.getRank();
-    this.getNotification();
-    this.getTime();
+  mounted () {
+    this.getRank()
+    this.getNotification()
+    this.getTime()
   },
   methods: {
-    getRank() {
-      axios.get("/info/rank").then(
-        (response) => {
-          let data = response.data;
-          this.rankTableData = data.data.rank;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    },
-    getNotification() {
-      axios.get("/manager/notification").then(
-        (response) => {
-          let data = response.data;
-          this.notifications = data.data.notifications;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    },
-    getTime() {
-      axios.get("/info/time").then(
-        (response) => {
-          let data = response.data;
-          this.round = data.data.time.NowRound;
-          console.log(this.round)
-          if (data.data.time.RemainTime <= 0) {
-            this.leftTime = "比赛未进行"
-          } else {
-            // RemainTime = data.data.time.RemainTime;
-            // hour = RemainTime % 3600
-            // min = RoundRemainTime % 60;
-            // sec = RoundRemainTime / 60;
-            // this.leftTime = hour + "小时" + min + "分" + sec + "秒"
+    getRank () {
+      axios.get('/info/rank').then(
+          (response) => {
+            let data = response.data
+            this.rankTableData = data.data.rank
+          },
+          (error) => {
+            console.log(error)
           }
-        },
-        (error) => {
-          console.log(error);
-        }
       )
+    },
+    getNotification () {
+      axios.get('/manager/notification').then(
+          (response) => {
+            let data = response.data
+            this.notifications = data.data.notifications
+          },
+          (error) => {
+            console.log(error)
+          }
+      )
+    },
+    getTime () {
+      axios.get('/info/time').then(
+          (response) => {
+            let data = response.data
+            this.round = data.data.time.NowRound
+            console.log(this.round)
+            if (data.data.time.RemainTime <= 0) {
+              this.leftTime = '比赛未进行'
+            } else {
+              console.log(data.data.time.RemainTime)
+              this.leftTime = this.formatSeconds(data.data.time.RemainTime)
+            }
+          },
+          (error) => {
+            console.log(error)
+          }
+      )
+    },
+    formatSeconds (seconds) {
+      var hours = Math.floor(seconds / 3600)
+      var minutes = Math.floor((seconds % 3600) / 60)
+      var remainingSeconds = seconds % 60
+
+      var formattedTime = ''
+      if (hours > 0) {
+        formattedTime += hours + '小时 '
+      }
+      if (minutes > 0) {
+        formattedTime += minutes + '分钟 '
+      }
+      if (remainingSeconds > 0 || formattedTime === '') {
+        formattedTime += remainingSeconds + '秒'
+      }
+
+      return formattedTime
     }
   },
 
-};
+}
 </script>
 
 <style scoped>

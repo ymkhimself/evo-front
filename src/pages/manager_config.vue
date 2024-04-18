@@ -51,7 +51,7 @@
       <span>每轮时间</span>
       <div class="size">
         <el-input-number v-model="configs.roundtime" :min="0" size="small" />
-        <span>h</span>
+        <span>m</span>
         <!-- <el-input-number v-model="roundTimeMin" :min="0" :max="60" size="small" style="margin-left:3%"/> <span>min</span> -->
       </div>
     </div>
