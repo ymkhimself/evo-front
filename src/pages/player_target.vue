@@ -4,20 +4,19 @@
     <el-container>
       <el-aside>
         <el-descriptions
-          direction="vertical"
-          title="信息表"
-          :column="2"
-          :size="size"
-          border
+            direction="vertical"
+            title="信息表"
+            :column="2"
+            :size="size"
+            border
         >
           <el-descriptions-item label="Username">
-            <el-avatar :src="teamInfo.teamImg" id="teamLogo" />
+            <el-avatar :src="teamInfo.teamImg" id="teamLogo"/>
             <p>{{ teamInfo.teamName }}</p>
           </el-descriptions-item>
           <el-descriptions-item label="比赛剩余时间">
             <el-tag size="">
               <div id="countdown">
-                {{ remainTime.hour }} h : {{ remainTime.minute }} min :
                 {{ remainTime.seconds }} s
               </div>
             </el-tag>
@@ -60,46 +59,46 @@
       <el-main class="main-in-palyer_target">
         <div id="rightChallenges">
           <challenge
-            v-for="(challenge, index) in boxesData"
-            :key="index"
-            :challenge="challenge"
-            class="challenge"
+              v-for="(challenge, index) in boxesData"
+              :key="index"
+              :challenge="challenge"
+              class="challenge"
           />
           <!-- <div style="background-color: #959a99; min-height: 100px; border-radius: 10px;">没有数据，占个位置先</div> -->
           <div style="margin-bottom: 10px"></div>
         </div>
         <el-descriptions
-          class="margin-top"
-          title="信息表"
-          :column="1"
-          :size="size"
-          border
+            class="margin-top"
+            title="信息表"
+            :column="1"
+            :size="size"
+            border
         >
           <div id="postFormat"></div>
           <el-descriptions-item>
-            <template #label> flag </template>
+            <template #label> flag</template>
             <div id="postFormatL1" class="lineRules">
               <!-- <p id="postTxt">POST</p> -->
               <p id="flagTxt">POST /flag</p>
             </div>
           </el-descriptions-item>
           <el-descriptions-item>
-            <template #label> Header </template>
+            <template #label> Header</template>
             <div class="lineRules">
               <p id="postBoxL2">
                 Content-Type:application/json
-                <br />Authorization:sdfasdfasdfadf/asdfasf/asdfa
+                <br/>Authorization:sdfasdfasdfadf/asdfasf/asdfa
               </p>
             </div>
           </el-descriptions-item>
           <el-descriptions-item>
-            <template #label> Body </template>
+            <template #label> Body</template>
             <div class="lineRules">
               <p>{"flag": "your_flag_here"}</p>
             </div>
           </el-descriptions-item>
           <el-descriptions-item>
-            <template #label> 也这样提交 </template>
+            <template #label> 也这样提交</template>
             <div class="lineRules">
               <p>
                 curl X POST http://172.17.0.1:19999/api/flag || "Authorization
@@ -154,18 +153,19 @@
           <div style="margin-top: 12px"></div>
           <div id="submitBox">
             <el-input
-              v-model="submitFlag"
-              placeholder="Please input your flag"
-              maxlength="100"
+                v-model="submitFlag"
+                placeholder="Please input your flag"
+                maxlength="100"
             />
           </div>
           <div style="margin-top: 12px"></div>
           <el-button
-            id="submitBtn"
-            type="primary"
-            @click=submitFlagFnc
-            style="width: 100%"
-            >提交</el-button
+              id="submitBtn"
+              type="primary"
+              @click=submitFlagFnc
+              style="width: 100%"
+          >提交
+          </el-button
           >
         </div>
       </el-main>
@@ -244,128 +244,100 @@
 </template>
 
 <script>
-import axios from "@/axios";
-import challenge from "../components/Challeng.vue";
+import axios from '@/axios'
+import challenge from '../components/Challeng.vue'
+
 export default {
-  name: "playerTarget",
+  name: 'playerTarget',
   components: { challenge },
-  data() {
+  data () {
     return {
       boxesData: [],
       //提交的flag
-      submitFlag: "",
+      submitFlag: '',
       //队伍信息
       teamInfo: {
         // 比赛轮数
         round: 5,
         score: null,
-        teamName: "hahaha",
+        teamName: 'hahaha',
         teamImg:
-          "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+            'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
       },
       //剩下的时间
       remainTime: {
         hour: 0,
         minute: 0,
         seconds: 0,
-        timeDiffrence: 120, //单位是分钟,接口返回以秒为单位
       },
-    };
+    }
   },
   methods: {
     // 获取靶机信息
-    getBoxesData() {
-      axios.get("/team/gameBox?teamId=" + sessionStorage.getItem("id")).then(
-        (response) => {
-          let data = response.data;
-          this.boxesData = data.data.boxes;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    },
-    //获取队伍信息
-    getTeamInfo() {
-      axios.get("/team/info?teamId=" + sessionStorage.getItem("id")).then(
-        (response) => {
-          let data = response.data;
-          this.teamInfo.teamName = data.data.info.team.Name;
-          this.teamInfo.teamImg =
-            "http://172.0.17.1:8080" + data.data.info.team.Logo;
-          this.teamInfo.score = data.data.info.team.Score;
-          this.teamInfo.round = data.data.info.round;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    },
-    // 提交flag
-    submitFlagFnc() {
-      axios
-        .post("/team/flag", {
-          flag: this.submitFlag,
-        })
-        .then(
+    getBoxesData () {
+      axios.get('/team/gameBox?teamId=' + sessionStorage.getItem('id')).then(
           (response) => {
-            console.log(response);
-            alert(response.data.msg);
+            let data = response.data
+            this.boxesData = data.data.boxes
           },
           (error) => {
-            console.log(error);
+            console.log(error)
           }
-        );
+      )
+    },
+    //获取队伍信息
+    getTeamInfo () {
+      axios.get('/team/info?teamId=' + sessionStorage.getItem('id')).then(
+          (response) => {
+            let data = response.data
+            console.log(data.data.info)
+            this.teamInfo.teamName = data.data.info.team.Name
+            this.teamInfo.teamImg =
+                'http://localhost:8082' + data.data.info.team.Logo
+            this.teamInfo.score = data.data.info.team.Score
+            this.teamInfo.round = data.data.info.round
+            this.remainTime.seconds = data.data.info.resTime
+            console.log('remainTime:' + this.remainTime.seconds)
+          },
+          (error) => {
+            console.log(error)
+          }
+      )
+    },
+    // 提交flag
+    submitFlagFnc () {
+      axios
+          .post('/team/flag', {
+            flag: this.submitFlag,
+          })
+          .then(
+              (response) => {
+                console.log(response)
+                alert(response.data.msg)
+              },
+              (error) => {
+                console.log(error)
+              }
+          )
     },
     //倒计时
-    countDown(timeDiffrence) {
-      this.remainTime.hour = parseInt(timeDiffrence / 60);
-      if (timeDiffrence - this.remainTime.hour * 60 == 0) {
-        this.remainTime.hour -= 1;
-        this.remainTime.minute = 59;
-        console.log("999");
-        this.remainTime.seconds = 59;
-      } else {
-        console.log("888");
-        this.remainTime.minute = timeDiffrence - this.remainTime.hour * 60 - 1;
-        this.remainTime.seconds = 59;
-      }
+    countDown () {
       let interval = setInterval(() => {
         if (this.remainTime.seconds == 0) {
-          // this.remainTime.minute -= 1
-          if (this.remainTime.minute == 0) {
-            if (this.remainTime.hour == 0) {
-              alert("时间到！");
-              clearInterval(interval);
-            } else {
-              this.remainTime.hour -= 1;
-              this.remainTime.minute = 59;
-              this.remainTime.seconds = 59;
-            }
-          } else {
-            this.remainTime.minute -= 1;
-            this.remainTime.seconds = 59;
-          }
-          this.remainTime.seconds = 59;
+          alert('时间到！')
+          clearInterval(interval)
         } else {
-          this.remainTime.seconds -= 1;
+          this.remainTime.seconds -= 1
         }
-
-        if (
-          this.remainTime.hour == 0 &&
-          this.remainTime.minute == 0 &&
-          this.remainTime.seconds <= 59
-        ) {
-        }
-      }, 1000);
+      }, 1000)
     },
   },
-  mounted() {
-    this.getTeamInfo();
-    this.getBoxesData();
-    this.countDown(this.remainTime.timeDiffrence);
+  mounted () {
+    this.getTeamInfo()
+    this.getBoxesData()
+    this.countDown()
   },
-};
+}
 </script>
 
 <style scoped>
@@ -423,6 +395,7 @@ p {
   color: #1c1c1c;
   text-align: center;
 }
+
 #rightChallenges {
   margin-bottom: 10px;
   display: flex;
@@ -431,6 +404,7 @@ p {
   height: 200px;
   overflow: scroll;
 }
+
 div::-webkit-scrollbar {
   display: none;
 }
